@@ -3,29 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Web Project</title>
+
+    <title>GridSight — Portrait Reference Tool</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <section id="hero" class="section">
-        <div class="container">
-            <h1>Welcome</h1>
-            <p>Your project starts here.</p>
+<div class="grid-bg"></div>
 
-            <button id="startBtn">Start</button>
-        </div>
-    </section>
+<header class="hero">
 
-    <section id="editor" class="section hidden">
-        <div class="container">
-            <h2>Editor</h2>
-            <p>Editor placeholder.</p>
-        </div>
-    </section>
+    <div class="hero-content reveal">
 
-    <script src="script.js"></script>
+        <span class="eyebrow">GridSight</span>
+
+        <h1>
+            See structure.
+            <br>
+            Draw with confidence.
+        </h1>
+
+        <p>
+            A minimal portrait reference tool for artists who prefer observation over guesswork.
+        </p>
+
+        <a href="#editor" class="cta">
+            Start Drawing
+        </a>
+
+    </div>
+
+</header>
+
+<div class="grid-divider"></div>
+
+<section class="features">
+
+    <article class="feature reveal">
+
+        <div class="feature-symbol grid-icon"></div>
+
+        <h2>Gridlines</h2>
+
+        <p>
+            Overlay clean proportional grids without clutter.
+        </p>
+
+    </article>
+
+    <article class="feature reveal">
+
+        <div class="feature-symbol grayscale-icon"></div>
+
+        <h2>Grayscale</h2>
+
+        <p>
+            Reduce color distractions and focus on values.
+        </p>
+
+    </article>
+
+    <article class="feature reveal">
+
+        <div class="feature-symbol export-icon"></div>
+
+        <h2>Export</h2>
+
+        <p>
+            Save your reference exactly as you've prepared it.
+        </p>
+
+    </article>
+
+</section>
+
+<div class="grid-divider"></div>
+
+<section id="editor">
+
+</section>
+
+<script src="script.js"></script>
 
 </body>
 </html>

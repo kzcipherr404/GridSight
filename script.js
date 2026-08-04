@@ -1,8 +1,29 @@
-const startBtn = document.getElementById("startBtn");
-const hero = document.getElementById("hero");
-const editor = document.getElementById("editor");
+const observer = new IntersectionObserver(
 
-startBtn.addEventListener("click", () => {
-    hero.classList.add("hidden");
-    editor.classList.remove("hidden");
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("active");
+
+}
+
 });
+
+},
+
+{
+
+threshold:0.15
+
+}
+
+);
+
+document
+
+.querySelectorAll(".reveal")
+
+.forEach(el=>observer.observe(el));

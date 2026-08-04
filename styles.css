@@ -1,98 +1,391 @@
-/* -------------------- */
-/* CSS Reset */
-/* -------------------- */
+/* =========================
+   RESET
+========================= */
 
 *,
 *::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    min-height: 100vh;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+body{
+    background:#0a0a0a;
+    color:#f3f1ec;
+    font-family:Inter,system-ui,sans-serif;
+    overflow-x:hidden;
 }
 
-img,
-picture,
-svg,
-video,
-canvas {
-    display: block;
-    max-width: 100%;
+img{
+    display:block;
+    max-width:100%;
 }
 
-button,
-input,
-textarea,
-select {
-    font: inherit;
+a{
+    text-decoration:none;
+    color:inherit;
 }
 
-button {
-    cursor: pointer;
-    border: none;
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+
+    --bg:#0a0a0a;
+    --surface:#111111;
+
+    --text:#f3f1ec;
+    --muted:#8b8b8b;
+
+    --accent:#c89b63;
+
+    --grid:rgba(255,255,255,.05);
+
 }
 
-/* -------------------- */
-/* Theme */
-/* -------------------- */
+/* =========================
+   GRID BACKGROUND
+========================= */
 
-:root {
-    --bg: #0a0a0a;
-    --surface: #141414;
-    --text: #f5f5f5;
-    --muted: #9d9d9d;
-    --accent: #ffffff;
+.grid-bg{
+
+    position:fixed;
+    inset:0;
+
+    background-image:
+
+    linear-gradient(var(--grid) 1px, transparent 1px),
+
+    linear-gradient(90deg,var(--grid) 1px, transparent 1px);
+
+    background-size:60px 60px;
+
+    opacity:.35;
+
+    pointer-events:none;
+
+    z-index:-1;
+
 }
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Inter, Arial, Helvetica, sans-serif;
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:7rem 2rem;
+
 }
 
-.section {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 3rem;
+.hero-content{
+
+    max-width:900px;
+
 }
 
-.container {
-    width: min(900px, 100%);
-    text-align: center;
+.eyebrow{
+
+    color:var(--muted);
+
+    letter-spacing:.3em;
+
+    text-transform:uppercase;
+
+    font-size:.75rem;
+
 }
 
-h1,
-h2 {
-    margin-bottom: 1rem;
+.hero h1{
+
+    margin-top:1rem;
+
+    font-size:clamp(3rem,8vw,7rem);
+
+    line-height:.92;
+
+    font-weight:800;
+
 }
 
-p {
-    color: var(--muted);
-    margin-bottom: 2rem;
+.hero p{
+
+    margin-top:2rem;
+
+    max-width:620px;
+
+    font-size:1.15rem;
+
+    color:var(--muted);
+
 }
 
-button {
-    padding: 0.85rem 1.6rem;
-    background: var(--accent);
-    color: #000;
-    border-radius: 8px;
-    transition: opacity 0.2s;
+.cta{
+
+    display:inline-flex;
+
+    margin-top:3rem;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    padding:1rem 2rem;
+
+    transition:.25s;
+
 }
 
-button:hover {
-    opacity: 0.85;
+.cta:hover{
+
+    border-color:var(--accent);
+
+    color:var(--accent);
+
 }
 
-.hidden {
-    display: none;
+/* =========================
+   DIVIDER
+========================= */
+
+.grid-divider{
+
+    height:90px;
+
+    background:
+
+    repeating-linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    transparent 49px,
+
+    rgba(255,255,255,.08) 49px,
+
+    rgba(255,255,255,.08) 50px
+
+    );
+
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:3rem;
+
+    padding:8rem 0;
+
+}
+
+.feature{
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:2rem;
+
+    transition:.3s;
+
+}
+
+.feature:hover{
+
+    border-color:var(--accent);
+
+}
+
+.feature h2{
+
+    margin-top:2rem;
+
+    font-size:1.5rem;
+
+}
+
+.feature p{
+
+    margin-top:1rem;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+}
+
+/* =========================
+   CUSTOM SYMBOLS
+========================= */
+
+.feature-symbol{
+
+    width:54px;
+
+    height:54px;
+
+}
+
+/* grid */
+
+.grid-icon{
+
+    background-image:
+
+    linear-gradient(#fff 1px,transparent 1px),
+
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+
+    background-size:18px 18px;
+
+    opacity:.9;
+
+}
+
+/* grayscale */
+
+.grayscale-icon{
+
+    border:2px solid white;
+
+    background:
+
+    linear-gradient(90deg,#fff 0%,#000 100%);
+
+}
+
+/* export */
+
+.export-icon{
+
+    position:relative;
+
+    border:2px solid white;
+
+}
+
+.export-icon::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:8px;
+
+    width:2px;
+
+    height:20px;
+
+    background:white;
+
+    transform:translateX(-50%);
+
+}
+
+.export-icon::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:20px;
+
+    width:10px;
+
+    height:10px;
+
+    border-right:2px solid white;
+
+    border-bottom:2px solid white;
+
+    transform:translateX(-50%) rotate(45deg);
+
+}
+
+/* =========================
+   EDITOR PLACEHOLDER
+========================= */
+
+#editor{
+
+    min-height:100vh;
+
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(30px);
+
+    transition:
+
+    opacity .8s ease,
+
+    transform .8s ease;
+
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:900px){
+
+.features{
+
+grid-template-columns:1fr;
+
+}
+
+.hero{
+
+padding-top:5rem;
+
+}
+
+.hero p{
+
+font-size:1rem;
+
+}
+
 }

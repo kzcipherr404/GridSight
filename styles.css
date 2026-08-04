@@ -1,0 +1,98 @@
+/* -------------------- */
+/* CSS Reset */
+/* -------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+/* -------------------- */
+/* Theme */
+/* -------------------- */
+
+:root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --text: #f5f5f5;
+    --muted: #9d9d9d;
+    --accent: #ffffff;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+.section {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 3rem;
+}
+
+.container {
+    width: min(900px, 100%);
+    text-align: center;
+}
+
+h1,
+h2 {
+    margin-bottom: 1rem;
+}
+
+p {
+    color: var(--muted);
+    margin-bottom: 2rem;
+}
+
+button {
+    padding: 0.85rem 1.6rem;
+    background: var(--accent);
+    color: #000;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.hidden {
+    display: none;
+}

@@ -82,6 +82,46 @@
 
 <section id="editor">
 
+    <div class="editor-layout">
+
+        <aside class="sidebar">
+
+            <h2>Controls</h2>
+
+            <!-- Controls will be added later -->
+
+        </aside>
+
+        <main class="workspace">
+
+            <div id="uploadPrompt" class="upload-area">
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/png,image/jpeg,image/webp"
+                    hidden
+                >
+
+                <button id="uploadBtn">
+                    Choose Image
+                </button>
+
+                <p>
+                    or drag & drop a JPG, PNG or WEBP
+                </p>
+
+            </div>
+
+            <canvas id="imageCanvas"></canvas>
+
+        </main>
+
+    </div>
+
+</section>
+
+
 </section>
 
 <script src="script.js"></script>

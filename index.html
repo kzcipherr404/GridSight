@@ -3,143 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>GridSight — Portrait Reference Tool</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="grid-bg"></div>
+    <!-- Background Grid Motif -->
+    <div class="grid-bg"></div>
 
-<header class="hero">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-    <div class="hero-content reveal">
+    <header class="hero">
 
-        <span class="eyebrow">GridSight</span>
+        <div class="hero-content reveal">
 
-        <h1>
-            See structure.
-            <br>
-            Draw with confidence.
-        </h1>
+            <span class="eyebrow">GridSight</span>
 
-        <p>
-            A minimal portrait reference tool for artists who prefer observation over guesswork.
-        </p>
+            <h1>
+                See structure.
+                <br>
+                Draw with confidence.
+            </h1>
 
-        <a href="#editor" class="cta">
-            Start Drawing
-        </a>
+            <p>
+                A minimal portrait reference tool for artists who prefer observation over guesswork.
+            </p>
 
-    </div>
+            <a href="#editor" class="cta">
+                Start Drawing
+            </a>
 
-</header>
+        </div>
 
-<div class="grid-divider"></div>
+    </header>
 
-<section class="features">
+    <div class="grid-divider"></div>
 
-    <article class="feature reveal">
+    <!-- =========================
+         FEATURES
+    ========================== -->
 
-        <div class="feature-symbol grid-icon"></div>
+    <section class="features">
 
-        <h2>Gridlines</h2>
+        <article class="feature reveal">
 
-        <p>
-            Overlay clean proportional grids without clutter.
-        </p>
+            <div class="feature-symbol grid-icon"></div>
 
-    </article>
+            <h2>Gridlines</h2>
 
-    <article class="feature reveal">
+            <p>
+                Overlay clean proportional grids without clutter.
+            </p>
 
-        <div class="feature-symbol grayscale-icon"></div>
+        </article>
 
-        <h2>Grayscale</h2>
+        <article class="feature reveal">
 
-        <p>
-            Reduce color distractions and focus on values.
-        </p>
+            <div class="feature-symbol grayscale-icon"></div>
 
-    </article>
+            <h2>Grayscale</h2>
 
-    <article class="feature reveal">
+            <p>
+                Reduce color distractions and focus on values.
+            </p>
 
-        <div class="feature-symbol export-icon"></div>
+        </article>
 
-        <h2>Export</h2>
+        <article class="feature reveal">
 
-        <p>
-            Save your reference exactly as you've prepared it.
-        </p>
+            <div class="feature-symbol export-icon"></div>
 
-    </article>
+            <h2>Export</h2>
 
-</section>
+            <p>
+                Save your reference exactly as you've prepared it.
+            </p>
 
-<div class="grid-divider"></div>
+        </article>
 
-<section id="editor">
+    </section>
 
-    <div class="editor-layout">
+    <div class="grid-divider"></div>
 
-        <aside class="sidebar">
+    <!-- =========================
+         EDITOR
+    ========================== -->
 
-            <h2>Controls</h2>
+    <section id="editor">
 
-            <div class="control-group">
+        <div class="editor-layout">
 
-    <label for="grayscaleSlider">
-        Grayscale
-        <span id="grayscaleValue">0%</span>
-    </label>
+            <!-- Sidebar -->
+            <aside class="sidebar">
 
-    <input
-        id="grayscaleSlider"
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-    >
+    <h2>Grid Controls</h2>
 
-</div>
 
-        </aside>
+    <div class="control-group">
 
-        <main class="workspace">
+        <label>
+            <input type="checkbox" id="horizontalToggle" checked>
+            Horizontal Lines
+        </label>
 
-            <div id="uploadPrompt" class="upload-area">
 
-                <input
-                    type="file"
-                    id="imageInput"
-                    accept="image/png,image/jpeg,image/webp"
-                    hidden
-                >
+        <label>
+            <input type="checkbox" id="verticalToggle" checked>
+            Vertical Lines
+        </label>
 
-                <button id="uploadBtn">
-                    Choose Image
-                </button>
 
-                <p>
-                    or drag & drop a JPG, PNG or WEBP
-                </p>
-
-            </div>
-
-            <canvas id="imageCanvas"></canvas>
-
-        </main>
+        <label>
+            <input type="checkbox" id="diagonalToggle" checked>
+            Diagonal X
+        </label>
 
     </div>
 
-</section>
 
 
-</section>
+    <div class="control-group">
 
-<script src="script.js"></script>
+        <label>
+            Density
+        </label>
+
+        <input
+            type="range"
+            id="density"
+            min="2"
+            max="10"
+            value="4"
+        >
+
+    </div>
+
+
+
+    <div class="control-group">
+
+        <label>
+            Line Color
+        </label>
+
+
+        <div class="color-buttons">
+
+            <button 
+                class="grid-color"
+                data-color="#ffffff">
+                White
+            </button>
+
+
+            <button
+                class="grid-color"
+                data-color="#000000">
+                Black
+            </button>
+
+
+            <button
+                class="grid-color"
+                data-color="#ff3b30">
+                Red
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="control-group">
+
+        <label>
+            Opacity
+        </label>
+
+        <input
+            type="range"
+            id="opacity"
+            min="0"
+            max="1"
+            step="0.05"
+            value="0.6"
+        >
+
+    </div>
+
+
+
+    <div class="control-group">
+
+        <label>
+            Line Width
+        </label>
+
+        <input
+            type="range"
+            id="lineWidth"
+            min="1"
+            max="6"
+            value="1"
+        >
+
+    </div>
+
+
+</aside>
+
+            <!-- Workspace -->
+            <main class="workspace">
+
+                <!-- Upload Prompt -->
+                <div id="uploadPrompt" class="upload-area">
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/png,image/jpeg,image/webp"
+                        hidden
+                    >
+
+                    <button id="uploadBtn">
+                        Choose Image
+                    </button>
+
+                    <p>
+                        or drag & drop a JPG, PNG or WEBP
+                    </p>
+
+                </div>
+
+                <!-- Canvas -->
+                <canvas id="imageCanvas"></canvas>
+
+            </main>
+
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

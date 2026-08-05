@@ -1,3 +1,6 @@
+console.log("GridSight script loaded");
+
+
 // ==========================================================
 // SCROLL REVEAL ANIMATION
 // ==========================================================
@@ -189,6 +192,7 @@ function resizeCanvas() {
 
 
     renderCanvas();
+    
 
 }
 
@@ -224,8 +228,76 @@ function renderCanvas() {
 
     );
 
-
     drawGrid();
+
+
+    function drawGrid() {
+
+    const w = canvas.width;
+    const h = canvas.height;
+
+    const cellSize = Math.min(w, h) / gridSettings.density;
+
+    ctx.save();
+
+    ctx.strokeStyle = gridSettings.color;
+    ctx.globalAlpha = gridSettings.opacity;
+    ctx.lineWidth = gridSettings.width;
+
+    // Vertical lines
+    if (gridSettings.vertical) {
+
+        for (let x = cellSize; x < w; x += cellSize) {
+
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
+
+        }
+
+    }
+
+    // Horizontal lines
+    if (gridSettings.horizontal) {
+
+        for (let y = cellSize; y < h; y += cellSize) {
+
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+
+        }
+
+    }
+
+    // Draw an X inside every square
+    if (gridSettings.diagonal) {
+
+        for (let x = 0; x + cellSize <= w; x += cellSize) {
+
+            for (let y = 0; y + cellSize <= h; y += cellSize) {
+
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + cellSize, y + cellSize);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(x + cellSize, y);
+                ctx.lineTo(x, y + cellSize);
+                ctx.stroke();
+
+            }
+
+        }
+
+    }
+
+    ctx.restore();
+
+}
 
 
 }
@@ -373,10 +445,10 @@ function drawGrid(){
 
     if(gridSettings.vertical){
 
-        const spacing = w / gridSettings.density;
+        const cellSize = Math.min(w, h) / gridSettings.density;
 
 
-        for(let i = 1; i < gridSettings.density; i++){
+        for(let x = cellSize; x < w; x += cellSize){
 
             ctx.beginPath();
 
@@ -405,7 +477,7 @@ function drawGrid(){
         const spacing = h / gridSettings.density;
 
 
-        for(let i = 1; i < gridSettings.density; i++){
+        for(let y = cellSize; y < h; y += cellSize){
 
             ctx.beginPath();
 
@@ -434,15 +506,15 @@ function drawGrid(){
 
         ctx.beginPath();
 
-        ctx.moveTo(
-            0,
-            0
-        );
+       for(let x = 0; x < w; x += cellSize){
 
-        ctx.lineTo(
-            w,
-            h
-        );
+    for(let y = 0; y < h; y += cellSize){
+
+        ctx.beginPath();
+
+        ctx.moveTo(x,y);
+
+        ctx.lineTo(x + cellSize, y + cellSize);
 
         ctx.stroke();
 
@@ -450,15 +522,15 @@ function drawGrid(){
 
         ctx.beginPath();
 
-        ctx.moveTo(
-            w,
-            0
-        );
+        ctx.moveTo(x + cellSize, y);
 
-        ctx.lineTo(
-            0,
-            h
-        );
+        ctx.lineTo(x, y + cellSize);
+
+        ctx.stroke();
+
+    }
+
+}
 
         ctx.stroke();
 

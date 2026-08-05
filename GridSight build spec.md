@@ -186,3 +186,29 @@ Polish pass:
 ## After this
 
 Once it's live, it's a genuinely demoable portfolio piece — not just "I followed a tutorial," but a tool with real interaction design decisions in it (partial grayscale, full-res export separate from preview, sight-size diagonal) you can explain in an interview or a README.
+
+
+
+
+My recommended build order from where you are:
+
+Phase 1 (current) (DONE)
+Upload
+Canvas
+Grid overlay
+
+Phase 2 (DONE)
+Better sidebar UI
+Grid presets
+Grid controls polish
+Export system
+
+Phase 3
+Grayscale
+Brightness/contrast
+Zoom + pan
+
+Phase 4
+Artist accounts/projects
+Save references
+Community/gallery features

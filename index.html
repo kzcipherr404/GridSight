@@ -97,124 +97,196 @@
         <div class="editor-layout">
 
             <!-- Sidebar -->
-            <aside class="sidebar">
+          <aside class="sidebar">
 
-    <h2>Grid Controls</h2>
+    <div class="panel-section">
+
+        <h2>Grid</h2>
 
 
-    <div class="control-group">
+        <label>Preset</label>
+
+        <select id="gridPreset">
+
+            <option value="custom">
+                Custom
+            </option>
+
+            <option value="portrait">
+                Portrait Study
+            </option>
+
+            <option value="loomis">
+                Loomis Method
+            </option>
+
+            <option value="detail">
+                Detailed Study
+            </option>
+
+        </select>
+
+
+    </div>
+
+
+
+    <div class="panel-section">
+
+        <h3>Lines</h3>
+
 
         <label>
-            <input type="checkbox" id="horizontalToggle" checked>
-            Horizontal Lines
+            <input 
+            type="checkbox"
+            id="horizontalToggle"
+            checked>
+            Horizontal
         </label>
 
 
         <label>
-            <input type="checkbox" id="verticalToggle" checked>
-            Vertical Lines
+            <input
+            type="checkbox"
+            id="verticalToggle"
+            checked>
+            Vertical
         </label>
 
 
         <label>
-            <input type="checkbox" id="diagonalToggle" checked>
+            <input
+            type="checkbox"
+            id="diagonalToggle"
+            checked>
             Diagonal X
         </label>
 
+
     </div>
 
 
 
-    <div class="control-group">
+    <div class="panel-section">
 
-        <label>
-            Density
-        </label>
+
+        <h3>Density</h3>
+
 
         <input
-            type="range"
-            id="density"
-            min="2"
-            max="10"
-            value="4"
+        type="range"
+        id="density"
+        min="2"
+        max="10"
+        value="4"
         >
 
-    </div>
 
+        <span id="densityValue">
+            4
+        </span>
 
-
-    <div class="control-group">
-
-        <label>
-            Line Color
-        </label>
-
-
-        <div class="color-buttons">
-
-            <button 
-                class="grid-color"
-                data-color="#ffffff">
-                White
-            </button>
-
-
-            <button
-                class="grid-color"
-                data-color="#000000">
-                Black
-            </button>
-
-
-            <button
-                class="grid-color"
-                data-color="#ff3b30">
-                Red
-            </button>
-
-        </div>
 
     </div>
 
 
 
-    <div class="control-group">
+    <div class="panel-section">
+
+
+        <h3>Appearance</h3>
+
 
         <label>
             Opacity
         </label>
 
+
         <input
-            type="range"
-            id="opacity"
-            min="0"
-            max="1"
-            step="0.05"
-            value="0.6"
+        type="range"
+        id="opacity"
+        min="0"
+        max="1"
+        step="0.05"
+        value="0.6"
         >
 
-    </div>
 
-
-
-    <div class="control-group">
 
         <label>
-            Line Width
+            Width
         </label>
 
+
         <input
-            type="range"
-            id="lineWidth"
-            min="1"
-            max="6"
-            value="1"
+        type="range"
+        id="lineWidth"
+        min="1"
+        max="6"
+        value="1"
         >
+
 
     </div>
 
 
-</aside>
+
+    <div class="panel-section">
+
+
+        <h3>Color</h3>
+
+
+        <div class="color-buttons">
+
+
+            <button
+            class="grid-color"
+            data-color="#ffffff">
+            White
+            </button>
+
+
+
+            <button
+            class="grid-color"
+            data-color="#000000">
+            Black
+            </button>
+
+
+
+            <button
+            class="grid-color"
+            data-color="#ff3b30">
+            Red
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="panel-section export">
+
+
+        <h3>Export</h3>
+
+
+        <button id="exportBtn">
+
+            Export Image
+
+        </button>
+
+
+    </div>
+
+
+</aside>  
 
             <!-- Workspace -->
             <main class="workspace">

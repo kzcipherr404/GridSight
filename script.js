@@ -42,6 +42,28 @@ const uploadPrompt = document.getElementById("uploadPrompt");
 const canvas = document.getElementById("imageCanvas");
 const ctx = canvas.getContext("2d");
 
+// ==========================================================
+// GRID CONTROL ELEMENTS
+// ==========================================================
+
+const gridPreset = document.getElementById("gridPreset");
+
+const horizontalToggle = document.getElementById("horizontalToggle");
+
+const verticalToggle = document.getElementById("verticalToggle");
+
+const diagonalToggle = document.getElementById("diagonalToggle");
+
+const density = document.getElementById("density");
+
+const densityValue = document.getElementById("densityValue");
+
+const opacity = document.getElementById("opacity");
+
+const lineWidth = document.getElementById("lineWidth");
+
+const exportBtn = document.getElementById("exportBtn");
+
 
 // Stores the original full-resolution image
 // This will be used later for full-resolution export
@@ -215,22 +237,114 @@ function renderCanvas() {
 // ==========================================================
 // GRID SYSTEM
 // ==========================================================
-
 const gridSettings = {
 
-    horizontal: true,
+    horizontal:true,
 
-    vertical: true,
+    vertical:true,
 
-    diagonal: true,
+    diagonal:true,
 
-    density: 4,
+    density:4,
 
-    color: "#ffffff",
+    color:"#ffffff",
 
-    opacity: 0.6,
+    opacity:0.6,
 
-    width: 1
+    width:1
+
+};
+
+const presets = {
+
+
+portrait:{
+
+horizontal:true,
+
+vertical:true,
+
+diagonal:false,
+
+density:4
+
+},
+
+
+
+loomis:{
+
+horizontal:true,
+
+vertical:true,
+
+diagonal:true,
+
+density:6
+
+},
+
+
+
+detail:{
+
+horizontal:true,
+
+vertical:true,
+
+diagonal:true,
+
+density:10
+
+}
+
+
+};
+
+
+
+gridPreset.onchange = (e)=>{
+
+
+const preset = presets[e.target.value];
+
+
+if(!preset) return;
+
+
+
+Object.assign(
+gridSettings,
+preset
+);
+
+
+
+horizontalToggle.checked =
+gridSettings.horizontal;
+
+
+verticalToggle.checked =
+gridSettings.vertical;
+
+
+diagonalToggle.checked =
+gridSettings.diagonal;
+
+
+
+density.value =
+gridSettings.density;
+
+
+
+densityValue.textContent =
+gridSettings.density;
+
+
+
+renderCanvas();
+
 
 };
 
@@ -469,12 +583,21 @@ diagonalToggle.oninput = (e)=>{
 };
 
 
-
 density.oninput = (e)=>{
 
-    gridSettings.density = Number(e.target.value);
 
-    renderCanvas();
+gridSettings.density =
+Number(e.target.value);
+
+
+
+densityValue.textContent =
+e.target.value;
+
+
+
+renderCanvas();
+
 
 };
 
@@ -517,3 +640,171 @@ document.querySelectorAll(".grid-color")
 
 
 });
+
+exportBtn.onclick = ()=>{
+
+
+if(!originalImage) return;
+
+
+
+const exportCanvas =
+document.createElement("canvas");
+
+
+
+const exportCtx =
+exportCanvas.getContext("2d");
+
+
+
+exportCanvas.width =
+originalImage.width;
+
+
+exportCanvas.height =
+originalImage.height;
+
+
+
+exportCtx.drawImage(
+
+originalImage,
+
+0,
+
+0
+
+);
+
+
+
+// scale grid to original resolution
+
+exportCtx.scale(
+
+originalImage.width / canvas.width,
+
+originalImage.height / canvas.height
+
+);
+
+
+
+drawGridExport(exportCtx);
+
+
+
+const link =
+document.createElement("a");
+
+
+
+link.download =
+"gridsight-reference.png";
+
+
+
+link.href =
+exportCanvas.toDataURL(
+"image/png"
+);
+
+
+
+link.click();
+
+
+};
+
+function drawGridExport(ctx){
+
+
+ctx.strokeStyle =
+gridSettings.color;
+
+
+ctx.globalAlpha =
+gridSettings.opacity;
+
+
+ctx.lineWidth =
+gridSettings.width;
+
+
+
+const w =
+canvas.width;
+
+
+const h =
+canvas.height;
+
+
+
+if(gridSettings.vertical){
+
+
+const spacing =
+w/gridSettings.density;
+
+
+for(let i=1;i<gridSettings.density;i++){
+
+
+ctx.beginPath();
+
+ctx.moveTo(
+i*spacing,
+0
+);
+
+
+ctx.lineTo(
+i*spacing,
+h
+);
+
+
+ctx.stroke();
+
+
+}
+
+}
+
+
+
+if(gridSettings.horizontal){
+
+
+const spacing =
+h/gridSettings.density;
+
+
+for(let i=1;i<gridSettings.density;i++){
+
+
+ctx.beginPath();
+
+ctx.moveTo(
+0,
+i*spacing
+);
+
+
+ctx.lineTo(
+w,
+i*spacing
+);
+
+
+ctx.stroke();
+
+
+}
+
+}
+
+
+}

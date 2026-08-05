@@ -507,3 +507,70 @@ a {
     color:var(--accent);
 
 }
+
+.sidebar {
+
+    background:#0d0d0d;
+
+}
+
+
+.panel-section {
+
+    padding-bottom:2rem;
+
+    margin-bottom:2rem;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+
+.panel-section h2,
+.panel-section h3 {
+
+    margin-bottom:1rem;
+
+}
+
+
+.panel-section label {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:.8rem;
+
+    color:#aaa;
+
+}
+
+
+select {
+
+    width:100%;
+
+    padding:.8rem;
+
+    background:#111;
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.15);
+
+}
+
+
+#densityValue {
+
+    color:#c89b63;
+
+}
+
+
+.export button {
+
+    width:100%;
+
+}

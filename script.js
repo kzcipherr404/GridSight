@@ -162,7 +162,17 @@ function resizeCanvas() {
     if (!originalImage) return;
 
 
-    const maxWidth = window.innerWidth * 0.65;
+    // Size against the actual workspace column, not a flat window fraction —
+    // the workspace sits next to a 280px sidebar on desktop, so a fixed
+    // window.innerWidth percentage can exceed the real available space and
+    // get clipped at medium viewport widths.
+    const workspace = document.querySelector(".workspace");
+    const workspaceStyle = getComputedStyle(workspace);
+    const horizontalPadding =
+        parseFloat(workspaceStyle.paddingLeft) +
+        parseFloat(workspaceStyle.paddingRight);
+
+    const maxWidth = workspace.clientWidth - horizontalPadding;
 
     const maxHeight = window.innerHeight * 0.85;
 
@@ -421,126 +431,6 @@ renderCanvas();
 };
 
 
-
-function drawGrid(){
-
-
-    const w = canvas.width;
-
-    const h = canvas.height;
-
-
-    ctx.save();
-
-
-    ctx.strokeStyle = gridSettings.color;
-
-    ctx.globalAlpha = gridSettings.opacity;
-
-    ctx.lineWidth = gridSettings.width;
-
-
-
-    // Vertical lines
-
-    if(gridSettings.vertical){
-
-        const cellSize = Math.min(w, h) / gridSettings.density;
-
-
-        for(let x = cellSize; x < w; x += cellSize){
-
-            ctx.beginPath();
-
-            ctx.moveTo(
-                i * spacing,
-                0
-            );
-
-            ctx.lineTo(
-                i * spacing,
-                h
-            );
-
-            ctx.stroke();
-
-        }
-
-    }
-
-
-
-    // Horizontal lines
-
-    if(gridSettings.horizontal){
-
-        const spacing = h / gridSettings.density;
-
-
-        for(let y = cellSize; y < h; y += cellSize){
-
-            ctx.beginPath();
-
-            ctx.moveTo(
-                0,
-                i * spacing
-            );
-
-            ctx.lineTo(
-                w,
-                i * spacing
-            );
-
-            ctx.stroke();
-
-        }
-
-    }
-
-
-
-    // Diagonal X
-
-    if(gridSettings.diagonal){
-
-
-        ctx.beginPath();
-
-       for(let x = 0; x < w; x += cellSize){
-
-    for(let y = 0; y < h; y += cellSize){
-
-        ctx.beginPath();
-
-        ctx.moveTo(x,y);
-
-        ctx.lineTo(x + cellSize, y + cellSize);
-
-        ctx.stroke();
-
-
-
-        ctx.beginPath();
-
-        ctx.moveTo(x + cellSize, y);
-
-        ctx.lineTo(x, y + cellSize);
-
-        ctx.stroke();
-
-    }
-
-}
-
-        ctx.stroke();
-
-    }
-
-
-    ctx.restore();
-
-
-}
 
 window.addEventListener(
 
@@ -813,33 +703,21 @@ const h =
 canvas.height;
 
 
+// Same shared cell size as the live preview (renderCanvas's drawGrid),
+// so square cells and the diagonal X line up identically on export.
+const cellSize = Math.min(w, h) / gridSettings.density;
+
 
 if(gridSettings.vertical){
 
-
-const spacing =
-w/gridSettings.density;
-
-
-for(let i=1;i<gridSettings.density;i++){
-
+for(let x = cellSize; x < w; x += cellSize){
 
 ctx.beginPath();
 
-ctx.moveTo(
-i*spacing,
-0
-);
-
-
-ctx.lineTo(
-i*spacing,
-h
-);
-
+ctx.moveTo(x, 0);
+ctx.lineTo(x, h);
 
 ctx.stroke();
-
 
 }
 
@@ -849,34 +727,60 @@ ctx.stroke();
 
 if(gridSettings.horizontal){
 
-
-const spacing =
-h/gridSettings.density;
-
-
-for(let i=1;i<gridSettings.density;i++){
-
+for(let y = cellSize; y < h; y += cellSize){
 
 ctx.beginPath();
 
-ctx.moveTo(
-0,
-i*spacing
-);
-
-
-ctx.lineTo(
-w,
-i*spacing
-);
-
+ctx.moveTo(0, y);
+ctx.lineTo(w, y);
 
 ctx.stroke();
 
-
 }
 
 }
 
 
+
+// Diagonal X — this was missing entirely before, so exports silently
+// dropped the diagonal grid even when the toggle was on.
+if(gridSettings.diagonal){
+
+for(let x = 0; x + cellSize <= w; x += cellSize){
+
+for(let y = 0; y + cellSize <= h; y += cellSize){
+
+ctx.beginPath();
+ctx.moveTo(x, y);
+ctx.lineTo(x + cellSize, y + cellSize);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(x + cellSize, y);
+ctx.lineTo(x, y + cellSize);
+ctx.stroke();
+
 }
+
+}
+
+}
+
+
+}
+
+// Reserved for Phase 3 (grayscale / brightness / contrast).
+// Not wired to anything yet — no function reads or writes this object.
+const imageSettings = {
+
+    grayscale: false,
+
+    brightness: 100,
+
+    contrast: 100,
+
+    sharpen: 0,
+
+    blur: 0
+
+};

@@ -34,6 +34,11 @@ const uploadPrompt = document.getElementById("uploadPrompt");
 const canvas = document.getElementById("imageCanvas");
 const ctx = canvas.getContext("2d");
 
+const grayscaleSlider = document.getElementById("grayscaleSlider");
+const grayscaleValue = document.getElementById("grayscaleValue");
+
+let grayscaleAmount = 0;
+
 /*
     ORIGINAL FULL-RES IMAGE
 
@@ -84,6 +89,14 @@ function handleFile(e){
 
 }
 
+function updatePreviewFilters(){
+
+    canvas.style.filter =
+        `grayscale(${grayscaleAmount}%)`;
+
+}
+
+
 function drawPreview(){
 
     const maxWidth = window.innerWidth * 0.65;
@@ -122,3 +135,17 @@ window.addEventListener("resize", () => {
     }
 
 });
+
+grayscaleSlider.addEventListener("input", () => {
+
+    grayscaleAmount = Number(grayscaleSlider.value);
+
+    grayscaleValue.textContent =
+        `${grayscaleAmount}%`;
+
+    updatePreviewFilters();
+
+});
+
+updatePreviewFilters();
+

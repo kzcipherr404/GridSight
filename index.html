@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GridSight — Portrait Reference Tool</title>
+    <meta name="description" content="GridSight is a browser-based portrait reference tool for artists to overlay customizable grids, desaturate values, adjust contrast, and export high-resolution reference images.">
+    <title>GridSight — Portrait Reference Tool for Artists</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -97,199 +98,196 @@
         <div class="editor-layout">
 
             <!-- Sidebar -->
-          <aside class="sidebar">
-
-    <div class="panel-section">
-
-        <h2>Grid</h2>
-
-
-        <label>Preset</label>
-
-        <select id="gridPreset">
-
-            <option value="custom">
-                Custom
-            </option>
-
-            <option value="portrait">
-                Portrait Study
-            </option>
-
-            <option value="loomis">
-                Loomis Method
-            </option>
-
-            <option value="detail">
-                Detailed Study
-            </option>
-
-        </select>
-
-
-    </div>
-
-
-
-    <div class="panel-section">
-
-        <h3>Lines</h3>
-
-
-        <label>
-            <input 
-            type="checkbox"
-            id="horizontalToggle"
-            checked>
-            Horizontal
-        </label>
-
-
-        <label>
-            <input
-            type="checkbox"
-            id="verticalToggle"
-            checked>
-            Vertical
-        </label>
-
-
-        <label>
-            <input
-            type="checkbox"
-            id="diagonalToggle"
-            checked>
-            Diagonal X
-        </label>
-
-
-    </div>
-
-
-
-    <div class="panel-section">
-
-
-        <h3>Density</h3>
-
-
-        <input
-        type="range"
-        id="density"
-        min="2"
-        max="25"
-        value="4"
-        >
-
-
-        <span id="densityValue">
-            4
-        </span>
-
-
-    </div>
-
-
-
-    <div class="panel-section">
-
-
-        <h3>Appearance</h3>
-
-
-        <label>
-            Opacity
-        </label>
-
-
-        <input
-        type="range"
-        id="opacity"
-        min="0"
-        max="1"
-        step="0.05"
-        value="0.6"
-        >
-
-
-
-        <label>
-            Width
-        </label>
-
-
-        <input
-        type="range"
-        id="lineWidth"
-        min="1"
-        max="6"
-        value="1"
-        >
-
-
-    </div>
-
-
-
-    <div class="panel-section">
-
-
-        <h3>Color</h3>
-
-
-        <div class="color-buttons">
-
-
-            <button
-            class="grid-color"
-            data-color="#ffffff">
-            White
-            </button>
-
-
-
-            <button
-            class="grid-color"
-            data-color="#000000">
-            Black
-            </button>
-
-
-
-            <button
-            class="grid-color"
-            data-color="#ff3b30">
-            Red
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="panel-section export">
-
-
-        <h3>Export</h3>
-
-
-        <button id="exportBtn">
-
-            Export Image
-
-        </button>
-
-
-    </div>
-
-
-</aside>  
+            <aside class="sidebar" aria-label="Reference controls">
+
+                <!-- IMAGE SECTION -->
+                <div class="panel-section">
+                    <h2>Image</h2>
+
+                    <div class="control-row checkbox-row">
+                        <label for="grayscaleToggle">
+                            <span>Grayscale</span>
+                            <input type="checkbox" id="grayscaleToggle">
+                        </label>
+                    </div>
+
+                    <div class="control-row">
+                        <label for="brightness">
+                            Brightness
+                            <span id="brightnessValue" class="value-badge">100%</span>
+                        </label>
+                        <input type="range" id="brightness" min="50" max="150" value="100">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="contrast">
+                            Contrast
+                            <span id="contrastValue" class="value-badge">100%</span>
+                        </label>
+                        <input type="range" id="contrast" min="50" max="150" value="100">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="blur">
+                            Blur
+                            <span id="blurValue" class="value-badge">0px</span>
+                        </label>
+                        <input type="range" id="blur" min="0" max="10" step="0.5" value="0">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="sharpen">
+                            Sharpen
+                            <span id="sharpenValue" class="value-badge">0</span>
+                        </label>
+                        <input type="range" id="sharpen" min="0" max="10" step="1" value="0">
+                    </div>
+
+                    <button id="resetImageBtn" class="btn-secondary" type="button">
+                        Reset Adjustments
+                    </button>
+                </div>
+
+                <!-- GRID SECTION -->
+                <div class="panel-section">
+                    <h2>Grid</h2>
+
+                    <div class="control-row">
+                        <label for="gridPreset">Preset</label>
+                        <select id="gridPreset">
+                            <option value="custom">Custom</option>
+                            <option value="portrait" selected>Portrait Study</option>
+                            <option value="loomis">Loomis Method</option>
+                            <option value="detail">Detailed Study</option>
+                        </select>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>Lines</h3>
+                        <div class="checkbox-group">
+                            <label for="horizontalToggle">
+                                <input type="checkbox" id="horizontalToggle" checked>
+                                Horizontal
+                            </label>
+
+                            <label for="verticalToggle">
+                                <input type="checkbox" id="verticalToggle" checked>
+                                Vertical
+                            </label>
+
+                            <label for="diagonalToggle">
+                                <input type="checkbox" id="diagonalToggle">
+                                Diagonal X
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="control-row">
+                        <label for="density">
+                            Density
+                            <span id="densityValue" class="value-badge">4</span>
+                        </label>
+                        <input type="range" id="density" min="2" max="25" value="4">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="opacity">
+                            Opacity
+                            <span id="opacityValue" class="value-badge">60%</span>
+                        </label>
+                        <input type="range" id="opacity" min="0" max="1" step="0.05" value="0.6">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="lineWidth">
+                            Width
+                            <span id="lineWidthValue" class="value-badge">1px</span>
+                        </label>
+                        <input type="range" id="lineWidth" min="1" max="6" value="1">
+                    </div>
+
+                    <div class="sub-section">
+                        <h3>Color</h3>
+                        <div class="color-buttons">
+                            <button type="button" class="grid-color active" data-color="#ffffff" title="White" aria-label="White grid"></button>
+                            <button type="button" class="grid-color" data-color="#000000" title="Black" aria-label="Black grid"></button>
+                            <button type="button" class="grid-color" data-color="#ff3b30" title="Red" aria-label="Red grid"></button>
+                            <button type="button" class="grid-color" data-color="#c89b63" title="Gold" aria-label="Gold grid"></button>
+                            <button type="button" class="grid-color" data-color="#00e5ff" title="Cyan" aria-label="Cyan grid"></button>
+                        </div>
+                    </div>
+
+                    <button id="resetGridBtn" class="btn-secondary" type="button">
+                        Reset Grid
+                    </button>
+                </div>
+
+                <!-- VIEW SECTION -->
+                <div class="panel-section">
+                    <h2>View</h2>
+
+                    <div class="view-status">
+                        <span>Zoom</span>
+                        <span id="zoomLevelDisplay" class="zoom-display">100%</span>
+                    </div>
+
+                    <div class="btn-grid">
+                        <button id="zoomInBtn" type="button" title="Zoom In (+)">+ Zoom In</button>
+                        <button id="zoomOutBtn" type="button" title="Zoom Out (-)">− Zoom Out</button>
+                        <button id="fitViewBtn" type="button" title="Fit to Screen (0)">Fit</button>
+                        <button id="zoom100Btn" type="button" title="Actual Size (1)">100%</button>
+                    </div>
+
+                    <button id="resetViewBtn" class="btn-secondary" type="button">
+                        Reset View
+                    </button>
+                </div>
+
+                <!-- EXPORT SECTION -->
+                <div class="panel-section export-section">
+                    <h2>Export</h2>
+
+                    <div class="control-row">
+                        <label for="exportFormat">Format</label>
+                        <select id="exportFormat">
+                            <option value="png">PNG (Lossless)</option>
+                            <option value="jpeg">JPG (Compressed)</option>
+                        </select>
+                    </div>
+
+                    <div id="jpgQualityRow" class="control-row" style="display: none;">
+                        <label for="jpgQuality">
+                            Quality
+                            <span id="jpgQualityValue" class="value-badge">90%</span>
+                        </label>
+                        <input type="range" id="jpgQuality" min="0.5" max="1" step="0.05" value="0.9">
+                    </div>
+
+                    <button id="exportBtn" class="btn-primary" type="button">
+                        Export Image
+                    </button>
+                </div>
+
+                <!-- SHORTCUTS HELP TRIGGER -->
+                <div class="panel-section shortcuts-hint">
+                    <button id="shortcutsToggleBtn" class="btn-text" type="button">
+                        ⌨ Keyboard Shortcuts
+                    </button>
+                </div>
+
+            </aside>
 
             <!-- Workspace -->
-            <main class="workspace">
+            <main class="workspace" aria-label="Canvas viewport">
+
+                <!-- Image Info Bar -->
+                <div id="imageInfoBar" class="image-info-bar" style="display: none;">
+                    <span id="imageFileName" class="info-name">filename.jpg</span>
+                    <span class="info-divider">•</span>
+                    <span id="imageDimensions" class="info-dims">0 × 0</span>
+                    <span class="info-divider">•</span>
+                    <span id="imageFileType" class="info-type">JPG</span>
+                </div>
 
                 <!-- Upload Prompt -->
                 <div id="uploadPrompt" class="upload-area">
@@ -301,24 +299,58 @@
                         hidden
                     >
 
-                    <button id="uploadBtn">
+                    <div class="upload-icon-box">
+                        <div class="upload-icon-symbol"></div>
+                    </div>
+
+                    <h2>Drop a reference image here</h2>
+
+                    <p class="upload-formats">
+                        JPG · PNG · WEBP
+                    </p>
+
+                    <button id="uploadBtn" class="btn-primary" type="button">
                         Choose Image
                     </button>
 
-                    <p>
-                        or drag & drop a JPG, PNG or WEBP
-                    </p>
-
                 </div>
 
-                <!-- Canvas -->
-                <canvas id="imageCanvas"></canvas>
+                <!-- Canvas View Container -->
+                <div id="canvasViewport" class="canvas-viewport" style="display: none;">
+                    <canvas id="imageCanvas"></canvas>
+                    <div id="panHint" class="pan-hint">Drag to Pan • Scroll to Zoom</div>
+                </div>
+
+                <!-- Toast / Error Container -->
+                <div id="toast" class="toast" style="display: none;"></div>
 
             </main>
 
         </div>
 
     </section>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div id="shortcutsModal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Keyboard Shortcuts</h3>
+                <button id="closeShortcutsBtn" class="close-btn" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="shortcut-item"><kbd>G</kbd> <span>Toggle All Grid Lines</span></div>
+                <div class="shortcut-item"><kbd>H</kbd> <span>Toggle Horizontal Lines</span></div>
+                <div class="shortcut-item"><kbd>V</kbd> <span>Toggle Vertical Lines</span></div>
+                <div class="shortcut-item"><kbd>D</kbd> <span>Toggle Diagonal X</span></div>
+                <div class="shortcut-item"><kbd>0</kbd> <span>Fit Image to Viewport</span></div>
+                <div class="shortcut-item"><kbd>1</kbd> <span>Zoom to 100%</span></div>
+                <div class="shortcut-item"><kbd>+</kbd> / <kbd>=</kbd> <span>Zoom In</span></div>
+                <div class="shortcut-item"><kbd>-</kbd> <span>Zoom Out</span></div>
+                <div class="shortcut-item"><kbd>R</kbd> <span>Reset Image Adjustments</span></div>
+                <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>S</kbd> <span>Export Image</span></div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 

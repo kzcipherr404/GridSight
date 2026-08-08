@@ -40,7 +40,7 @@ Then either:
 
 ```bash
 # Python
-python3 -m http.server 8000
+python3 -m http.server 8000 or py -m http.server 8000
 
 # Node
 npx serve .

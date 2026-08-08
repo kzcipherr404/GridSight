@@ -30,7 +30,7 @@ Everything the app does — grid drawing, grayscale conversion, export — is a 
 No install, no dependencies.
 
 ```bash
-git clone https://github.com/<your-username>/gridsight.git
+git clone https://github.com/kzcipherr404/gridsight.git
 cd gridsight
 ```
 

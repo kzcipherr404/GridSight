@@ -88,11 +88,11 @@ gridsight/
 
 ## Deployment
 
-Static site — deploys as-is to GitHub Pages, Vercel, or Netlify.
+Static site — Vercel
 
-**GitHub Pages:**
+**Vercel Link:**
 ```bash
-# Push to a gh-pages branch, or enable Pages on main in repo settings
+https://grid-sight-sigma.vercel.app/
 ```
 
 ---
